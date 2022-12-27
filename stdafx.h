@@ -15,7 +15,7 @@
 #include <atlbase.h>
 
 #pragma warning(disable:4192) // Automatic exclusion of system defined symbols
-#pragma warning(disable : 4278) // 'name':identifier in type library 'library' is already a macro
+#pragma warning(disable:4278) // 'name':identifier in type library 'library' is already a macro
 
 #include "InventorUtils.h"
 
