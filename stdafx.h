@@ -3,7 +3,8 @@
 // are changed infrequently
 //
 
-#pragma once
+#ifndef _STDAFX_SYS_H
+#define _STDAFX_SYS_H
 
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 #include <stdio.h>
@@ -18,3 +19,8 @@
 
 #include "InventorUtils.h"
 
+
+#include <optional>
+
+
+#endif

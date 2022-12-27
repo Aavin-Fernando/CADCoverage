@@ -1,6 +1,19 @@
+# InventorCI
+ -----
+ 
+ ## Description
+ This is a single-executable project that allows for CI pipeline checks on Inventor Professional 2023 Projects. 
+ 
+ Targeted to work easily with a git pre-push hook as most online runners do not have windows available as an option (for a good reason!)
+ 
+ 
+ ## Structure
+ - Can output JUnit XML files
 
-  SimpleExe sample
-  ================
+## Compilation
+- Must use MSVC on Visual Studio 2019.
+
+
 
   DESCRIPTION
 	
