@@ -15,7 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}</ProjectGuid>
+    <ProjectGuid>{F9AAEA40-43AD-4D45-9F1F-17EF355FB0C3}</ProjectGuid>
     <RootNamespace>InventorCI</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>InventorCI</ProjectName>
@@ -133,7 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SimpleExe.cpp" />
+    <ClCompile Include="InventorCI.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Optimize|x64'">Create</PrecompiledHeader>

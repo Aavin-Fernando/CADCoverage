@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33130.400
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InventorCI", "InventorCI.vcxproj", "{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InventorCI", "InventorCI.vcxproj", "{F9AAEA40-43AD-4D45-9F1F-17EF355FB0C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,23 +15,20 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}.Debug|Win32.ActiveCfg = Debug|x64
-		{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}.Debug|Win32.Build.0 = Debug|x64
-		{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}.Debug|x64.ActiveCfg = Debug|x64
-		{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}.Debug|x64.Build.0 = Debug|x64
-		{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}.Optimize|Win32.ActiveCfg = Optimize|Win32
-		{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}.Optimize|Win32.Build.0 = Optimize|Win32
-		{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}.Optimize|x64.ActiveCfg = Optimize|x64
-		{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}.Optimize|x64.Build.0 = Optimize|x64
-		{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}.Release|Win32.ActiveCfg = Release|Win32
-		{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}.Release|Win32.Build.0 = Release|Win32
-		{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}.Release|x64.ActiveCfg = Release|x64
-		{F9AAEA40-43AD-4D45-9F2F-17EF355FB0C3}.Release|x64.Build.0 = Release|x64
+		{F9AAEA40-43AD-4D45-9F1F-17EF355FB0C3}.Debug|Win32.ActiveCfg = Debug|x64
+		{F9AAEA40-43AD-4D45-9F1F-17EF355FB0C3}.Debug|x64.ActiveCfg = Debug|x64
+		{F9AAEA40-43AD-4D45-9F1F-17EF355FB0C3}.Debug|x64.Build.0 = Debug|x64
+		{F9AAEA40-43AD-4D45-9F1F-17EF355FB0C3}.Optimize|Win32.ActiveCfg = Optimize|x64
+		{F9AAEA40-43AD-4D45-9F1F-17EF355FB0C3}.Optimize|x64.ActiveCfg = Optimize|x64
+		{F9AAEA40-43AD-4D45-9F1F-17EF355FB0C3}.Optimize|x64.Build.0 = Optimize|x64
+		{F9AAEA40-43AD-4D45-9F1F-17EF355FB0C3}.Release|Win32.ActiveCfg = Release|x64
+		{F9AAEA40-43AD-4D45-9F1F-17EF355FB0C3}.Release|x64.ActiveCfg = Release|x64
+		{F9AAEA40-43AD-4D45-9F1F-17EF355FB0C3}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {785F980D-93B2-42A2-A4D2-2A608CEA09F6}
+		SolutionGuid = {785F980D-93B2-42A2-A4D2-2A608DEA09F6}
 	EndGlobalSection
 EndGlobal
