@@ -2,10 +2,8 @@
 //
 
 #include "stdafx.h"
+#include "InventorCI.h"
 
-// Forward declarations
-static HRESULT GetInventorInformation();
-static std::optional<CComPtr<Application>> GetInventorProcess();
 
 // Our Entrypoint. Note that all COM related activity (including the automatic 'release' within smart
 // pointers) MUST take place BEFORE CoUnitialize(). Hence the function 'block' within which
@@ -56,6 +54,16 @@ static std::optional<CComPtr<Application>> GetInventorProcess() {
 	}
 }
 
+static LPCTSTR GetFilesOfTypeInProject(TCHAR**) {
+
+}
+
+
+static BOOL GetProjectExists() {
+	HANDLE found = FindFirstFileA("*.ipj", *(new LPWIN32_FIND_DATAA));
+	return found == INVALID_HANDLE_VALUE ? false : true;
+}
+
 
 
 static HRESULT GetInventorInformation() {
@@ -64,13 +72,8 @@ static HRESULT GetInventorInformation() {
 	CComPtr<Application> pInvApp = GetInventorProcess().value();
 
 
-
-
-
 	// Display some information about Inventor
 	_tprintf_s(_T("\nInventor Information: \n"));
-
-
 
 	CComBSTR bstrCaption;
 	Result = pInvApp->get_Caption(&bstrCaption);
@@ -144,5 +147,12 @@ static HRESULT GetInventorInformation() {
 	}
 
 	return Result;
+}
+
+
+
+
+void TestInterfileRef(CComPtr<Application> pInvApp) {
+	//pInvApp->file
 }
 

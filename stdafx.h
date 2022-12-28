@@ -11,6 +11,7 @@
 #include <tchar.h>
 
 #include <objbase.h>
+#include <fileapi.h>
 #include <stdio.h>
 #include <atlbase.h>
 
