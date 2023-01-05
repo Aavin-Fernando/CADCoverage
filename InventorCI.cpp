@@ -5,9 +5,9 @@
 #include "InventorCI.h"
 
 #include <libloaderapi.h>
-#include <pathcch.h>
 #include <strsafe.h>
 #include <fileapi.h>
+
 
 // Our Entrypoint. (wmain) Note that all COM related activity (including the automatic 'release' within smart
 // pointers) MUST take place BEFORE CoUnitialize(). Hence the function 'block' within which
@@ -18,11 +18,18 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	HRESULT Result = NOERROR;
 	Result = CoInitialize (NULL);
 
-	// need this for practically everything
-	//LPCTSTR
+
+	WCHAR* projectpath = (WCHAR*)malloc(OUR_MAX_PATH * sizeof(WCHAR));
+	size_t projectpathsize = OUR_MAX_PATH;
+	Result = GetProjectPath_S(projectpath, projectpathsize);
 
 
 
+	TestProjectFileExists(projectpath, projectpathsize);
+
+
+
+	if (Result != NOERROR) return Result;
 
 	if (SUCCEEDED(Result))
 		Result = GetInventorInformation();
@@ -32,35 +39,51 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	// Cleanup 
 	CoUninitialize(); 
 
-	return 1;
+	return 0;
 }
 
+
+
+
+
+
+
 /**
-* @return project path
-* Just checks if there is a .ipj
+* @return success / what failed
+* @param buf string that will contain path
+* @param bufsize side of prev. string
 **/
 static HRESULT GetProjectPath_S(WCHAR* buf, size_t bufsize) {
 	WCHAR* tmpbuf = (WCHAR*) malloc(OUR_MAX_PATH*sizeof(WCHAR));
 	if (!tmpbuf) return E_OUTOFMEMORY;
-
 	if (!GetModuleFileNameW(NULL, tmpbuf, OUR_MAX_PATH)) return E_FAIL;
 	for (int i = 0; i < 3; i++)
 		PathCchRemoveFileSpec(tmpbuf, OUR_MAX_PATH);
-	
 	if (buf) StringCchCopyW(buf, bufsize, tmpbuf);
-	StringCchCatW(tmpbuf, OUR_MAX_PATH, L"\\*.ipj");
-
-	LPWIN32_FIND_DATAW* findstruc = new LPWIN32_FIND_DATAW;
-	HANDLE find = FindFirstFileW(tmpbuf, *findstruc);
-	free(tmpbuf);
-
-	if (GetLastError() == ERROR_FILE_NOT_FOUND) {
-		_tprintf_s(_T("\x1B[31mERROR: Cannot find project file \033[0m\t\t"));
-		return E_FAIL;
-	}
-
 	return NOERROR;
 }
+
+
+static HRESULT TestProjectFileExists(const WCHAR* projectpath, const size_t ppathsz) {
+	WCHAR* tmpbuf = (WCHAR*)malloc(OUR_MAX_PATH * sizeof(WCHAR));
+	if (!tmpbuf) return E_OUTOFMEMORY;
+
+	if (projectpath) StringCchCopyW(tmpbuf, ppathsz, projectpath);
+	StringCchCatW(tmpbuf, OUR_MAX_PATH, L"\\*.ipj");
+	LPWIN32_FIND_DATAW findstruc = new WIN32_FIND_DATAW;
+	HANDLE find = FindFirstFileW(tmpbuf, findstruc);
+
+	free(tmpbuf);
+
+	if (find == INVALID_HANDLE_VALUE) {
+		_tprintf_s(_T("ERROR: Cannot find inventor project file!"));
+		return E_FAIL;
+	}
+	else {
+		return NOERROR;
+	}
+}
+
 
 
 static std::optional<CComPtr<Application>> GetInventorProcess() {
@@ -91,17 +114,6 @@ static std::optional<CComPtr<Application>> GetInventorProcess() {
 		return pInvApp; 
 	}
 }
-
-static LPCTSTR GetFilesOfTypeInProject(TCHAR**) {
-
-}
-
-
-static BOOL GetProjectExists() {
-	HANDLE found = FindFirstFileA("*.ipj", *(new LPWIN32_FIND_DATAA));
-	return found == INVALID_HANDLE_VALUE ? false : true;
-}
-
 
 
 static HRESULT GetInventorInformation() {

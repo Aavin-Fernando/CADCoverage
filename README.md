@@ -16,8 +16,6 @@
 ## Compilation
 - Must use MSVC on Visual Studio 2019.
 
-
-
   DESCRIPTION
 	
 	This builds a simple console application that demonstrates how a client may access
