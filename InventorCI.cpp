@@ -4,8 +4,12 @@
 #include "stdafx.h"
 #include "InventorCI.h"
 
+#include <libloaderapi.h>
+#include <pathcch.h>
+#include <strsafe.h>
+#include <fileapi.h>
 
-// Our Entrypoint. Note that all COM related activity (including the automatic 'release' within smart
+// Our Entrypoint. (wmain) Note that all COM related activity (including the automatic 'release' within smart
 // pointers) MUST take place BEFORE CoUnitialize(). Hence the function 'block' within which
 // the smart-pointers construct and destruct (and AddRef and Release) keeping the CoUnitialize
 // safely out of the way.
@@ -14,14 +18,48 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	HRESULT Result = NOERROR;
 	Result = CoInitialize (NULL);
 
+	// need this for practically everything
+	//LPCTSTR
+
+
+
 
 	if (SUCCEEDED(Result))
 		Result = GetInventorInformation();
 
+	
+
 	// Cleanup 
 	CoUninitialize(); 
 
-	return 0;
+	return 1;
+}
+
+/**
+* @return project path
+* Just checks if there is a .ipj
+**/
+static HRESULT GetProjectPath_S(WCHAR* buf, size_t bufsize) {
+	WCHAR* tmpbuf = (WCHAR*) malloc(OUR_MAX_PATH*sizeof(WCHAR));
+	if (!tmpbuf) return E_OUTOFMEMORY;
+
+	if (!GetModuleFileNameW(NULL, tmpbuf, OUR_MAX_PATH)) return E_FAIL;
+	for (int i = 0; i < 3; i++)
+		PathCchRemoveFileSpec(tmpbuf, OUR_MAX_PATH);
+	
+	if (buf) StringCchCopyW(buf, bufsize, tmpbuf);
+	StringCchCatW(tmpbuf, OUR_MAX_PATH, L"\\*.ipj");
+
+	LPWIN32_FIND_DATAW* findstruc = new LPWIN32_FIND_DATAW;
+	HANDLE find = FindFirstFileW(tmpbuf, *findstruc);
+	free(tmpbuf);
+
+	if (GetLastError() == ERROR_FILE_NOT_FOUND) {
+		_tprintf_s(_T("\x1B[31mERROR: Cannot find project file \033[0m\t\t"));
+		return E_FAIL;
+	}
+
+	return NOERROR;
 }
 
 

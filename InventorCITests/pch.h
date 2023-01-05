@@ -1,10 +1,8 @@
-// stdafx.h : include file for standard system include files,
-// or project specific include files that are used frequently, but
-// are changed infrequently
+//
+// pch.h
 //
 
-#ifndef _STDAFX_SYS_H
-#define _STDAFX_SYS_H
+#pragma once
 
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 #include <stdio.h>
@@ -14,13 +12,14 @@
 #include <fileapi.h>
 #include <stdio.h>
 #include <atlbase.h>
-#include <optional>
 
 #pragma warning(disable:4192) // Automatic exclusion of system defined symbols
 #pragma warning(disable:4278) // 'name':identifier in type library 'library' is already a macro
 
 #include "InventorUtils.h"
 
-#define OUR_MAX_PATH MAX_PATH
 
-#endif
+#include <optional>
+
+
+#include "gtest/gtest.h"

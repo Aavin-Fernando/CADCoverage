@@ -5,7 +5,10 @@
  This is a single-executable project that allows for CI pipeline checks on Inventor Professional 2023 Projects. 
  
  Targeted to work easily with a git pre-push hook as most online runners do not have windows available as an option (for a good reason!)
- 
+ - Tested with:
+	- GitHub Desktop
+	- SourceTree
+	- Git Bash
  
  ## Structure
  - Can output JUnit XML files
